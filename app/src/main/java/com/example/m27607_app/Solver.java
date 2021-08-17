@@ -18,6 +18,15 @@ public class Solver {
         }
     }
 
+    public void setNumberPosition(int num) {
+        if(this.selected_row != -1 && this.selected_column != -1) {
+            if(this.board[this.selected_row-1][this.selected_column-1] !=0) return;
+            if(this.board[this.selected_row-1][this.selected_column-1] == num) {
+                this.board[this.selected_row-1][this.selected_column-1] = 0;
+            } else this.board[this.selected_row-1][this.selected_column-1] = num;
+        }
+    }
+
     public int[][] getBoard() {
         return this.board;
     }

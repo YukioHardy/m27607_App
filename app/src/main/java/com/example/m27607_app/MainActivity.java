@@ -21,4 +21,43 @@ public class MainActivity extends AppCompatActivity {
         text = findViewById(R.id.textView);
     }
 
+    public void btnOnePress(View view) {
+        sudokuSolver.setNumberPosition(1);
+        sudokuBoard.invalidate();
+    }
+
+    public void btnTwoPress(View view) {
+        sudokuSolver.setNumberPosition(2);
+        sudokuBoard.invalidate();
+    }
+
+    public void btnThreePress(View view) {
+        sudokuSolver.setNumberPosition(3);
+        sudokuBoard.invalidate();
+    }
+    public void btnFourPress(View view) {
+        sudokuSolver.setNumberPosition(4);
+        sudokuBoard.invalidate();
+    }
+    public void btnFivePress(View view) {
+        sudokuSolver.setNumberPosition(5);
+        sudokuBoard.invalidate();
+    }
+    public void btnSixPress(View view) {
+        sudokuSolver.setNumberPosition(6);
+        sudokuBoard.invalidate();
+    }
+    public void btnSevenPress(View view) {
+        sudokuSolver.setNumberPosition(7);
+        sudokuBoard.invalidate();
+    }
+    public void btnEightPress(View view) {
+        sudokuSolver.setNumberPosition(8);
+        sudokuBoard.invalidate();
+    }
+    public void btnNinePress(View view) {
+        sudokuSolver.setNumberPosition(9);
+        sudokuBoard.invalidate();
+    }
+
 }

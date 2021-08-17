@@ -170,6 +170,7 @@ public class SudokuBoard extends View {
         }
     }
 
+    //Test
     public void restart() {
         game--;
         fillBoard();

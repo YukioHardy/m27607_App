@@ -75,4 +75,13 @@ public class MainActivity extends AppCompatActivity {
         sudokuBoard.invalidate();
     }
 
+    public void solve(View view) {
+        if(sudokuSolver.completed()) {
+            if(sudokuSolver.check()) {
+                text.setText(getString(R.string.correct));
+            } else text.setText(getString(R.string.wrong));
+        } else text.setText(getString(R.string.unfinsihed));
+        sudokuBoard.invalidate();
+    }
+
 }

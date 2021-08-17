@@ -157,7 +157,7 @@ public class SudokuBoard extends View {
         for (int i = 0; i <9 ; i++) {
             for (int j = 0; j < 9; j++) {
                 String s = split[i*9+j];
-                Character c = s.charAt(0);
+                char c = s.charAt(0);
                 if(c == '?') {
                     solver.getBoard()[i][j] = 0;
                 } else solver.getBoard()[i][j] = c-'0';

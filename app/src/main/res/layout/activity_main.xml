@@ -137,7 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/solve_btn"
-
+        android:onClick="solve"
         android:text="@string/solve"
         android:textSize="18sp"
         custom:layout_constraintEnd_toEndOf="parent"

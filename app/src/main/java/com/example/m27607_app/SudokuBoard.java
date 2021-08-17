@@ -48,7 +48,7 @@ public class SudokuBoard extends View {
         } finally {
             a.recycle();
         }
-        //start numbers
+        fillBoard();
     }
 
     @Override
@@ -90,7 +90,85 @@ public class SudokuBoard extends View {
         drawNumbers(canvas);
     }
 
-    //start numbers
+    public void fillBoard() {
+        game++;
+        this.startNumber = new ArrayList<>();
+        String sudoku;
+        String sudoku1 =
+                "5 3 ? ? 7 ? ? ? ? " +
+                        "6 ? ? 1 9 5 ? ? ? " +
+                        "? 9 8 ? ? ? ? 6 ? " +
+                        "8 ? ? ? 6 ? ? ? 3 " +
+                        "4 ? ? 8 ? 3 ? ? 1 " +
+                        "7 ? ? ? 2 ? ? ? 6 " +
+                        "? 6 ? ? ? ? 2 8 ? " +
+                        "? ? ? 4 1 9 ? ? 5 " +
+                        "? ? ? ? 8 ? ? 7 9 ";
+        String sudoku2 =
+                "? 3 ? 7 ? ? ? 2 ? " +
+                        "6 ? ? ? ? ? ? 5 ? " +
+                        "5 ? ? ? 4 9 ? ? 7 " +
+                        "1 ? ? ? 5 8 ? ? 4 " +
+                        "? ? ? ? ? 2 ? ? 6 " +
+                        "? ? ? 1 ? ? 2 ? ? " +
+                        "3 ? ? 5 ? 1 ? ? ? " +
+                        "? ? 7 ? 3 ? ? ? 2 " +
+                        "? 4 ? ? 6 ? 5 ? ? ";
+        String sudoku3 =
+                "? ? ? ? ? ? ? ? ? " +
+                        "? ? ? ? ? 3 ? 8 5 " +
+                        "? ? 1 ? 2 ? ? ? ? " +
+                        "? ? ? 5 ? 7 ? ? ? " +
+                        "? ? 4 ? ? ? 1 ? ? " +
+                        "? 9 ? ? ? ? ? ? ? " +
+                        "5 ? ? ? ? ? ? 7 3 " +
+                        "? ? 2 ? 1 ? ? ? ? " +
+                        "? ? ? ? 4 ? ? ? 9 ";
+        String sudoku4 =
+                "? 1 ? 4 ? 2 ? 5 ? " +
+                        "5 ? ? ? ? ? ? ? 6 " +
+                        "? ? ? 3 ? 1 ? ? ? " +
+                        "7 ? 5 ? ? ? 4 ? 8 " +
+                        "? ? ? ? ? ? ? ? ? " +
+                        "2 ? 8 ? ? ? 5 ? 9 " +
+                        "? ? ? 9 ? 6 ? ? ? " +
+                        "6 ? ? ? ? ? ? ? 2 " +
+                        "? 7 ? 1 ? 3 ? 3 ? ";
+        String sudoku5 =
+                "? ? 6 ? 4 ? ? 9 7 " +
+                        "? 4 ? 7 3 ? ? 1 ? " +
+                        "? 1 7 ? 9 2 ? 3 ? " +
+                        "6 ? ? ? 7 ? ? 8 ? " +
+                        "1 ? 5 ? 6 ? 9 ? 3 " +
+                        "? 2 ? ? 1 ? ? ? 6 " +
+                        "? 5 ? 9 8 ? 1 6 ? " +
+                        "? 9 ? ? 5 6 ? 7 ? " +
+                        "8 6 ? ? 2 ? 3 ? ? ";
+        if(game ==1) sudoku = sudoku1;
+        else if(game ==2) sudoku = sudoku2;
+        else if(game ==3) sudoku = sudoku3;
+        else if(game ==4) sudoku = sudoku4;
+        else {
+            sudoku = sudoku5;
+            game = 0;
+        }
+        String[] split = sudoku.split(" ");
+
+        for (int i = 0; i <9 ; i++) {
+            for (int j = 0; j < 9; j++) {
+                String s = split[i*9+j];
+                Character c = s.charAt(0);
+                if(c == '?') {
+                    solver.getBoard()[i][j] = 0;
+                } else solver.getBoard()[i][j] = c-'0';
+                if(solver.getBoard()[i][j]!=0) {
+                    this.startNumber.add(new ArrayList<>());
+                    this.startNumber.get(this.startNumber.size()-1).add(i);
+                    this.startNumber.get(this.startNumber.size()-1).add(j);
+                }
+            }
+        }
+    }
 
     //restart
 

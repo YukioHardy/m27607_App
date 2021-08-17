@@ -60,4 +60,19 @@ public class MainActivity extends AppCompatActivity {
         sudokuBoard.invalidate();
     }
 
+    public void btnRestart(View view) {
+        sudokuBoard.restart();
+        text.setText(getString(R.string.Playing));
+        sudokuBoard.invalidate();
+    }
+    public void btnNew(View view) {
+        sudokuBoard.fillBoard();
+        text.setText(getString(R.string.Playing));
+        sudokuBoard.invalidate();
+    }
+    public void btnDelete(View view) {
+        sudokuBoard.delete();
+        sudokuBoard.invalidate();
+    }
+
 }

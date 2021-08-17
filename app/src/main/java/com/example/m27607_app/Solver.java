@@ -27,6 +27,12 @@ public class Solver {
         }
     }
 
+    public void deleteNumPosition() {
+        if(this.selected_row != -1 && this.selected_column != -1) {
+            this.board [this.selected_row-1][this.selected_column-1] = 0;
+        }
+    }
+
     public int[][] getBoard() {
         return this.board;
     }

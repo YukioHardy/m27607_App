@@ -170,9 +170,16 @@ public class SudokuBoard extends View {
         }
     }
 
-    //restart
+    public void restart() {
+        game--;
+        fillBoard();
+    }
 
-    //delete
+    public void delete() {
+        solver.deleteNumPosition();
+    }
+
+
 
     private void drawThickLine() {
         boardColorPaint.setStyle(Paint.Style.STROKE);

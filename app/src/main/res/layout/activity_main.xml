@@ -170,7 +170,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
+            android:onClick="btnDelete"
             android:text="@string/Delete"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -181,7 +181,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
+            android:onClick="btnRestart"
             android:text="@string/Restart"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -192,7 +192,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
+            android:onClick="btnNew"
             android:text="@string/New"
             android:textColor="@color/black"
             android:textSize="18sp" />

@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -14,11 +15,14 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+/**
+ * This class contains all methods to "paint" the Sudoku Grid and to fill in the numbers
+ */
 public class SudokuBoard extends View {
+    //Creates variables for the Colors needed
     private final int boardColor;
     private final int cellFillColor;
     private final int cellsHighlightColor;
-
     private final int letterColor;
     private final int letterColorStart;
 
@@ -28,15 +32,25 @@ public class SudokuBoard extends View {
 
     private final Paint letterPaint = new Paint();
     private final Rect letterPaintBounds = new Rect();
+    //Variable for the cell size
     private int cellSize;
-
+    //Array List with the Start numbers
     ArrayList<ArrayList<Object>> startNumber;
+    //Integer, that defines, which puzzle is shown
     private int game = 0;
 
     private final Solver solver = new Solver();
 
+    private static final String TAG = SudokuBoard.class.getSimpleName();
+
+    //Constructor for the Sudoku Board
+    //Sets the colors to the colors that were defined in the activity_main
+    //calls the fillBoard Method, so that you will have a Puzzle at the beginning
     public SudokuBoard(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        System.out.println("TAG: " + TAG);
+        Log.d(TAG, "Loading methods");
+
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SudokuBoard,
                 0, 0);
         try {
@@ -51,8 +65,10 @@ public class SudokuBoard extends View {
         fillBoard();
     }
 
+    //Sets the size of the Sudoku Board based on the screen size and calculates the cell size
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.d(TAG, "Getting measurements...");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int height = MeasureSpec.getSize(heightMeasureSpec);
@@ -65,8 +81,13 @@ public class SudokuBoard extends View {
         setMeasuredDimension(dimension, dimension);
     }
 
+    //Sets all styles and colors to the Paints
+    //Calls the colorCell Method for the selected cell
+    //Draws a Rectangle
+    //Calls the drawBoard and drawNumbers Method
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.d(TAG, "Drawing on board...");
         boardColorPaint.setStyle(Paint.Style.STROKE);
         boardColorPaint.setStrokeWidth(16);
         boardColorPaint.setColor(boardColor);
@@ -90,7 +111,13 @@ public class SudokuBoard extends View {
         drawNumbers(canvas);
     }
 
+    //Fills in the numbers, that you have given at the beginning of a puzzle
+    //Selects a game from 1 to 5
     public void fillBoard() {
+        Log.d(TAG, "Filling in start numbers...");
+        //In the beginning, the game is set to 0, so if the fillBoard Method is called for the
+        //first time, its set to 1
+        //Based on the value of the game, a Sukoku Board is selected
         game++;
         this.startNumber = new ArrayList<>();
         String sudoku;
@@ -154,6 +181,8 @@ public class SudokuBoard extends View {
         }
         String[] split = sudoku.split(" ");
 
+        //The Start numbers are put into the board
+        //Every question mark marks an empty cell
         for (int i = 0; i <9 ; i++) {
             for (int j = 0; j < 9; j++) {
                 String s = split[i*9+j];
@@ -170,31 +199,41 @@ public class SudokuBoard extends View {
         }
     }
 
-    //Test
+    //Restarts the game by decreasing the game score and calling the fillBoard Method again
     public void restart() {
+        Log.d(TAG, "Restarting game...");
         game--;
         fillBoard();
     }
 
+    //Deletes the number in the current cell by setting it to the value of on the board
     public void delete() {
-        solver.deleteNumPosition();
+        Log.d(TAG, "Deleting number...");
+        if(solver.getSelectedRow() != -1 && solver.getSelectedColumn() != -1) {
+            solver.getBoard()[solver.getSelectedRow()-1][solver.getSelectedColumn()-1] = 0;
+        }
     }
 
-
-
+    //Sets the StrokeWith of the boardColorPaint high
     private void drawThickLine() {
+        Log.d(TAG, "Drawing thick line...");
         boardColorPaint.setStyle(Paint.Style.STROKE);
         boardColorPaint.setStrokeWidth(10);
         boardColorPaint.setColor(boardColor);
     }
 
+    //Sets the StrokeWidth of the boardColor low
     private void drawThinLine() {
+        Log.d(TAG, "Draw thin line..");
         boardColorPaint.setStyle(Paint.Style.STROKE);
         boardColorPaint.setStrokeWidth(4);
         boardColorPaint.setColor(boardColor);
     }
 
+    //Draws the Board
+    //Chooses between thick and thin lines for the borders
     private void drawBoard(Canvas canvas) {
+        Log.d(TAG, "Drawing grid...");
         for (int c = 0; c < 10; c++) {
             if(c%3 == 0) {
                 drawThickLine();
@@ -214,10 +253,13 @@ public class SudokuBoard extends View {
         }
     }
 
+    //Getter for the Solver
     public Solver getSolver() {
+        Log.d(TAG, "Return solver...");
         return this.solver;
     }
 
+    //Returns, if the Clicked Position is on the Sudoku Board
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -235,7 +277,10 @@ public class SudokuBoard extends View {
         return isValid;
     }
 
+    //Draws the numbers in the Grid
+    //a different Color is used, if the number belongs to the start numbers
     private void drawNumbers(Canvas canvas) {
+        Log.d(TAG, "Drawing numbers...");
         letterPaint.setTextSize(cellSize);
         for (int r = 0; r < 9; r++) {
             for (int c = 0; c < 9; c++) {
@@ -270,7 +315,9 @@ public class SudokuBoard extends View {
         }
     }
 
+    //Colors the cell that is selected and all the cells in the same row/column
     private void colorCell(Canvas canvas, int r, int c) {
+        Log.d(TAG, "Color in cells...");
         if(solver.getSelectedColumn() != -1 && solver.getSelectedRow() != -1) {
             canvas.drawRect((c-1)*cellSize, 0, c*cellSize,
                     cellSize*9, cellsHighlightColorPaint);

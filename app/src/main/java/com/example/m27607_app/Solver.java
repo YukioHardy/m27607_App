@@ -101,12 +101,10 @@ public class Solver {
     //Getter and Setter for the Row and Column
     //Getter for the Board
     public int[][] getBoard() {
-        Log.d(TAG, "Returning board...");
         return this.board;
     }
 
     public int getSelectedRow() {
-        Log.d(TAG, "Returning selected row...");
         return selected_row;
     }
 
@@ -116,7 +114,6 @@ public class Solver {
     }
 
     public int getSelectedColumn() {
-        Log.d(TAG, "Returning selected column...");
         return selected_column;
     }
 

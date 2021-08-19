@@ -87,7 +87,6 @@ public class SudokuBoard extends View {
     //Calls the drawBoard and drawNumbers Method
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d(TAG, "Drawing on board...");
         boardColorPaint.setStyle(Paint.Style.STROKE);
         boardColorPaint.setStrokeWidth(16);
         boardColorPaint.setColor(boardColor);
@@ -216,7 +215,6 @@ public class SudokuBoard extends View {
 
     //Sets the StrokeWith of the boardColorPaint high
     private void drawThickLine() {
-        Log.d(TAG, "Drawing thick line...");
         boardColorPaint.setStyle(Paint.Style.STROKE);
         boardColorPaint.setStrokeWidth(10);
         boardColorPaint.setColor(boardColor);
@@ -224,7 +222,6 @@ public class SudokuBoard extends View {
 
     //Sets the StrokeWidth of the boardColor low
     private void drawThinLine() {
-        Log.d(TAG, "Draw thin line..");
         boardColorPaint.setStyle(Paint.Style.STROKE);
         boardColorPaint.setStrokeWidth(4);
         boardColorPaint.setColor(boardColor);
@@ -233,7 +230,6 @@ public class SudokuBoard extends View {
     //Draws the Board
     //Chooses between thick and thin lines for the borders
     private void drawBoard(Canvas canvas) {
-        Log.d(TAG, "Drawing grid...");
         for (int c = 0; c < 10; c++) {
             if(c%3 == 0) {
                 drawThickLine();
@@ -280,7 +276,6 @@ public class SudokuBoard extends View {
     //Draws the numbers in the Grid
     //a different Color is used, if the number belongs to the start numbers
     private void drawNumbers(Canvas canvas) {
-        Log.d(TAG, "Drawing numbers...");
         letterPaint.setTextSize(cellSize);
         for (int r = 0; r < 9; r++) {
             for (int c = 0; c < 9; c++) {
@@ -317,7 +312,6 @@ public class SudokuBoard extends View {
 
     //Colors the cell that is selected and all the cells in the same row/column
     private void colorCell(Canvas canvas, int r, int c) {
-        Log.d(TAG, "Color in cells...");
         if(solver.getSelectedColumn() != -1 && solver.getSelectedRow() != -1) {
             canvas.drawRect((c-1)*cellSize, 0, c*cellSize,
                     cellSize*9, cellsHighlightColorPaint);

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         System.out.println("TAG: " + TAG);
-        Log.d(TAG, "Loading methods");
+        //Log.d(TAG, "Loading methods");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     //Updates the Board
 
     public void btnOnePress(View view) {
-        Log.d(TAG, "Putting Number 1 in Cell...");
+        //Log.d(TAG, "Putting Number 1 in Cell...");
         sudokuSolver.setNumberPosition(1);
         sudokuBoard.invalidate();
     }

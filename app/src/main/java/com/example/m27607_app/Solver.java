@@ -16,8 +16,8 @@ public class Solver {
     private static final String TAG = Solver.class.getSimpleName();
     Solver() {
         System.out.println("TAG: " + TAG);
-        Log.d(TAG, "Loading methods");
-        //Setting row and collumn to -1, so that there is no selected cell when starting the game
+        //Log.d(TAG, "Loading methods");
+        //Setting row and column to -1, so that there is no selected cell when starting the game
         selected_row = -1;
         selected_column = -1;
 
@@ -36,7 +36,7 @@ public class Solver {
     //If there is a missing number, it returns false
     //Otherwise it returns true
     public boolean completed() {
-        Log.d(TAG, "Checking if competed...");
+        //Log.d(TAG, "Checking if competed...");
         for (int r=0; r<9; r++) {
             for (int c = 0; c < 9; c++) {
                 if(this.board[r][c] == 0) return false;
@@ -46,7 +46,7 @@ public class Solver {
     }
 
     private boolean check(int i1, int j1, int i2, int j2) {
-        Log.d(TAG, "Checking if numbers are repeating...");
+        //Log.d(TAG, "Checking if numbers are repeating...");
         boolean[] seen= new boolean[10];
         for (int i = 1; i <=9; i++) seen[i] = false;
         for (int i = i1; i < i2; i++) {
@@ -65,12 +65,12 @@ public class Solver {
     //If everything is right, it returns true
     public boolean check() {
         //Checking the Rows for equal numbers
-        Log.d(TAG, "Checking rows...");
+        //Log.d(TAG, "Checking rows...");
         for (int i = 0; i < 9; i++) {
             if(!check(i, 0, i+1, 9)) return false;
         }
         //Checking the columns for equal numbers
-        Log.d(TAG, "Checking columns...");
+        //Log.d(TAG, "Checking columns...");
         for (int j = 0; j < 9; j++) {
             if(!check(0, j, 9, j+1)) return false;
         }
@@ -89,7 +89,7 @@ public class Solver {
     //on the Board
     //Numbers can't be placed when there is already a number in the Cell other than 0
     public void setNumberPosition(int num) {
-        Log.d(TAG, "Setting numbers on board...");
+        //Log.d(TAG, "Setting numbers on board...");
         if(this.selected_row != -1 && this.selected_column != -1) {
             if(this.board[this.selected_row-1][this.selected_column-1] !=0) return;
             if(this.board[this.selected_row-1][this.selected_column-1] == num) {
@@ -109,7 +109,7 @@ public class Solver {
     }
 
     public void setSelectedRow(int r) {
-        Log.d(TAG, "Setting selected row...");
+        //Log.d(TAG, "Setting selected row...");
         selected_row = r;
     }
 
@@ -118,7 +118,7 @@ public class Solver {
     }
 
     public void setSelectedColumn(int c) {
-        Log.d(TAG, "Setting selected column...");
+        //Log.d(TAG, "Setting selected column...");
         selected_column = c;
     }
 }

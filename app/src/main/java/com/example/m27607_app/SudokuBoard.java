@@ -49,7 +49,7 @@ public class SudokuBoard extends View {
     public SudokuBoard(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         System.out.println("TAG: " + TAG);
-        Log.d(TAG, "Loading methods");
+        //Log.d(TAG, "Loading methods");
 
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.SudokuBoard,
                 0, 0);
@@ -68,7 +68,7 @@ public class SudokuBoard extends View {
     //Sets the size of the Sudoku Board based on the screen size and calculates the cell size
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.d(TAG, "Getting measurements...");
+        //Log.d(TAG, "Getting measurements...");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int height = MeasureSpec.getSize(heightMeasureSpec);
@@ -112,8 +112,9 @@ public class SudokuBoard extends View {
 
     //Fills in the numbers, that you have given at the beginning of a puzzle
     //Selects a game from 1 to 5
+    //Test
     public void fillBoard() {
-        Log.d(TAG, "Filling in start numbers...");
+        //Log.d(TAG, "Filling in start numbers...");
         //In the beginning, the game is set to 0, so if the fillBoard Method is called for the
         //first time, its set to 1
         //Based on the value of the game, a Sukoku Board is selected
@@ -200,14 +201,14 @@ public class SudokuBoard extends View {
 
     //Restarts the game by decreasing the game score and calling the fillBoard Method again
     public void restart() {
-        Log.d(TAG, "Restarting game...");
+        //Log.d(TAG, "Restarting game...");
         game--;
         fillBoard();
     }
 
     //Deletes the number in the current cell by setting it to the value of on the board
     public void delete() {
-        Log.d(TAG, "Deleting number...");
+        //Log.d(TAG, "Deleting number...");
         if(solver.getSelectedRow() != -1 && solver.getSelectedColumn() != -1) {
             solver.getBoard()[solver.getSelectedRow()-1][solver.getSelectedColumn()-1] = 0;
         }
@@ -251,7 +252,7 @@ public class SudokuBoard extends View {
 
     //Getter for the Solver
     public Solver getSolver() {
-        Log.d(TAG, "Return solver...");
+        //Log.d(TAG, "Return solver...");
         return this.solver;
     }
 
